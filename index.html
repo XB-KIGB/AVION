@@ -8,8 +8,6 @@
   <style>
     :root {
       --bg: #050505;
-      --bg-2: #101010;
-      --panel: rgba(16,16,16,0.88);
       --panel-2: rgba(255,255,255,0.04);
       --line: rgba(255,255,255,0.12);
       --line-strong: rgba(255,255,255,0.24);
@@ -17,11 +15,7 @@
       --muted: #cccccc;
       --shadow: 0 18px 46px rgba(0,0,0,0.38);
       --radius-xl: 22px;
-      --radius-lg: 16px;
       --radius-md: 12px;
-      --accent-red: #ff5858;
-      --accent-green: #58ff7e;
-      --accent-blue: #63b3ff;
     }
 
     * { box-sizing: border-box; }
@@ -118,14 +112,8 @@
       scrollbar-color: rgba(255,255,255,0.24) transparent;
     }
 
-    .control-panel::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    .control-panel::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
+    .control-panel::-webkit-scrollbar { width: 10px; }
+    .control-panel::-webkit-scrollbar-track { background: transparent; }
     .control-panel::-webkit-scrollbar-thumb {
       background: rgba(255,255,255,0.18);
       border-radius: 999px;
@@ -209,14 +197,16 @@
       font-variant-numeric: tabular-nums;
     }
 
-    .file-help {
+    .file-help,
+    .hint-inline {
       color: var(--muted);
       font-size: 0.82rem;
       line-height: 1.45;
     }
 
     input[type="file"],
-    input[type="number"] {
+    input[type="number"],
+    select {
       width: 100%;
       background: rgba(255,255,255,0.05);
       border: 1px solid var(--line);
@@ -227,7 +217,8 @@
     }
 
     input[type="number"]:focus,
-    input[type="file"]:focus {
+    input[type="file"]:focus,
+    select:focus {
       border-color: var(--line-strong);
     }
 
@@ -427,26 +418,16 @@
       display: none;
     }
 
-    .hint-inline {
-      margin-top: -2px;
-      margin-bottom: 4px;
-      font-size: 0.82rem;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-
     @media (max-width: 980px) {
       html, body { overflow: auto; }
       #app { min-height: 100vh; }
       #scene { position: fixed; }
-
       .hud {
         display: grid;
         gap: 12px;
         padding: 12px;
         align-content: start;
       }
-
       .title-card,
       .control-panel,
       .status-bar {
@@ -454,11 +435,9 @@
         width: 100%;
         height: auto;
       }
-
       .status-bar { grid-template-columns: 1fr; }
       .axis-inputs { grid-template-columns: 1fr; }
       .crosshair { display: none; }
-
       #axesViewport {
         width: 110px;
         height: 110px;
@@ -487,8 +466,8 @@
         <div class="eyebrow">3D STL Editor</div>
         <h1 class="title">Aircraft Viewer Pro</h1>
         <p class="subtitle">
-          El modelo y el plano se controlan por separado. Ahora también puedes rotar el plano,
-          colapsar secciones y trabajar con menos scroll.
+          El plano inicia en estándar de diseño: XZ horizontal y Y vertical.
+          También puedes cambiar la orientación base del plano al final de su sección.
         </p>
       </section>
 
@@ -665,7 +644,7 @@
             </button>
 
             <div id="planeCollapseContent" class="collapse-content">
-              <div class="hint-inline">Controla la posición y rotación del plano/grid sin afectar al modelo.</div>
+              <div class="hint-inline">Plano inicial estándar: XZ horizontal y Y vertical.</div>
 
               <div>
                 <div class="subsection-title">Posición del plano</div>
@@ -730,6 +709,29 @@
               <div class="button-row-2" style="margin-top:12px;">
                 <button id="resetPlaneBtn" type="button">Reset plano</button>
                 <button id="levelPlaneBtn" type="button">Nivelar plano</button>
+              </div>
+
+              <div class="divider"></div>
+
+              <div>
+                <div class="subsection-title">Cambiar ejes del plano</div>
+                <div class="hint-inline">
+                  Cambia la orientación base del plano como se usa en distintos entornos de diseño.
+                </div>
+
+                <div class="row">
+                  <label for="planeAxisPreset">Orientación base <span class="value" id="planePresetLabel">Plano XZ (Y arriba)</span></label>
+                  <select id="planeAxisPreset">
+                    <option value="XZ">Plano XZ (Y arriba)</option>
+                    <option value="XY">Plano XY (Z arriba)</option>
+                    <option value="YZ">Plano YZ (X arriba)</option>
+                  </select>
+                </div>
+
+                <div class="button-row-2">
+                  <button id="applyPlaneAxisBtn" type="button">Aplicar ejes</button>
+                  <button id="resetPlaneAxisBtn" type="button">Volver a XZ</button>
+                </div>
               </div>
             </div>
           </div>
@@ -802,15 +804,18 @@
     const matMatteBtn = $('matMatteBtn');
     const matChromeBtn = $('matChromeBtn');
 
+    const planeAxisPreset = $('planeAxisPreset');
+    const planePresetLabel = $('planePresetLabel');
+    const applyPlaneAxisBtn = $('applyPlaneAxisBtn');
+    const resetPlaneAxisBtn = $('resetPlaneAxisBtn');
+
     const controlsMap = {
       posX: { slider: $('posXSlider'), input: $('posXInput'), label: $('posXLabel'), min: -1000, max: 1000, def: 0, decimals: 2 },
       posY: { slider: $('posYSlider'), input: $('posYInput'), label: $('posYLabel'), min: -1000, max: 1000, def: 0, decimals: 2 },
       posZ: { slider: $('posZSlider'), input: $('posZInput'), label: $('posZLabel'), min: -1000, max: 1000, def: 0, decimals: 2 },
-
       rotX: { slider: $('rotXSlider'), input: $('rotXInput'), label: $('rotXLabel'), min: -180, max: 180, def: 0, decimals: 2, suffix: '°' },
       rotY: { slider: $('rotYSlider'), input: $('rotYInput'), label: $('rotYLabel'), min: -180, max: 180, def: 0, decimals: 2, suffix: '°' },
       rotZ: { slider: $('rotZSlider'), input: $('rotZInput'), label: $('rotZLabel'), min: -180, max: 180, def: 0, decimals: 2, suffix: '°' },
-
       scaleX: { slider: $('scaleXSlider'), input: $('scaleXInput'), label: $('scaleXLabel'), min: 0.05, max: 8, def: 1, decimals: 2 },
       scaleY: { slider: $('scaleYSlider'), input: $('scaleYInput'), label: $('scaleYLabel'), min: 0.05, max: 8, def: 1, decimals: 2 },
       scaleZ: { slider: $('scaleZSlider'), input: $('scaleZInput'), label: $('scaleZLabel'), min: 0.05, max: 8, def: 1, decimals: 2 }
@@ -820,7 +825,6 @@
       planeX: { slider: $('planeXSlider'), input: $('planeXInput'), label: $('planeXLabel'), min: -1000, max: 1000, def: 0, decimals: 2 },
       planeY: { slider: $('planeYSlider'), input: $('planeYInput'), label: $('planeYLabel'), min: -1000, max: 1000, def: 0, decimals: 2 },
       planeZ: { slider: $('planeZSlider'), input: $('planeZInput'), label: $('planeZLabel'), min: -1000, max: 1000, def: 0, decimals: 2 },
-
       planeRotX: { slider: $('planeRotXSlider'), input: $('planeRotXInput'), label: $('planeRotXLabel'), min: -180, max: 180, def: 0, decimals: 2, suffix: '°' },
       planeRotY: { slider: $('planeRotYSlider'), input: $('planeRotYInput'), label: $('planeRotYLabel'), min: -180, max: 180, def: 0, decimals: 2, suffix: '°' },
       planeRotZ: { slider: $('planeRotZSlider'), input: $('planeRotZInput'), label: $('planeRotZLabel'), min: -180, max: 180, def: 0, decimals: 2, suffix: '°' }
@@ -839,7 +843,8 @@
       planeZ: 0,
       planeRotX: 0,
       planeRotY: 0,
-      planeRotZ: 0
+      planeRotZ: 0,
+      planePreset: 'XZ'
     };
 
     let autoSpin = true;
@@ -881,20 +886,21 @@
     const keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
     const fillLight = new THREE.DirectionalLight(0xffffff, 1.2);
     const rimLight = new THREE.DirectionalLight(0xffffff, 1.4);
-
     keyLight.position.set(180, 240, 180);
     fillLight.position.set(-160, 120, -140);
     rimLight.position.set(0, 300, -220);
-
     scene.add(ambientLight, keyLight, fillLight, rimLight);
 
     const planeGroup = new THREE.Group();
     scene.add(planeGroup);
 
+    const planePivot = new THREE.Group();
+    planeGroup.add(planePivot);
+
     const grid = new THREE.GridHelper(3000, 150, 0xffffff, 0x7f7f7f);
     grid.material.opacity = 0.25;
     grid.material.transparent = true;
-    planeGroup.add(grid);
+    planePivot.add(grid);
 
     const floorPlane = new THREE.Mesh(
       new THREE.PlaneGeometry(4000, 4000),
@@ -905,8 +911,7 @@
         side: THREE.DoubleSide
       })
     );
-    floorPlane.rotation.x = -Math.PI / 2;
-    planeGroup.add(floorPlane);
+    planePivot.add(floorPlane);
 
     const axesHelper = new THREE.AxesHelper(120);
     scene.add(axesHelper);
@@ -929,9 +934,7 @@
 
     const axesGroup = new THREE.Group();
     axesScene.add(axesGroup);
-
-    const axesLight = new THREE.AmbientLight(0xffffff, 1.5);
-    axesScene.add(axesLight);
+    axesScene.add(new THREE.AmbientLight(0xffffff, 1.5));
 
     function setStatus(message) {
       statusEl.textContent = message;
@@ -947,6 +950,10 @@
       return THREE.MathUtils.degToRad(deg);
     }
 
+    function radToDeg(rad) {
+      return THREE.MathUtils.radToDeg(rad);
+    }
+
     function hueToLabel(hue) {
       if (hue === 0) return 'Blanco';
       if (hue < 15 || hue >= 345) return 'Rojo';
@@ -959,15 +966,24 @@
       return 'Magenta';
     }
 
+    function presetLabel(preset) {
+      if (preset === 'XY') return 'Plano XY (Z arriba)';
+      if (preset === 'YZ') return 'Plano YZ (X arriba)';
+      return 'Plano XZ (Y arriba)';
+    }
+
+    function updatePlanePresetUI() {
+      planeAxisPreset.value = planeState.planePreset;
+      planePresetLabel.textContent = presetLabel(planeState.planePreset);
+    }
+
     function getToneColor() {
       const hue = parseFloat(colorSlider.value);
       const isNeutral = hue === 0;
       const label = hueToLabel(hue);
-
       const color = isNeutral
         ? new THREE.Color(0xffffff)
         : new THREE.Color().setHSL(hue / 360, 0.68, 0.56);
-
       colorValue.textContent = label;
       return { color, label };
     }
@@ -1047,6 +1063,7 @@
       uniformScaleValue.textContent = `${transformState.uniformScale.toFixed(2)}x`;
       uniformScaleSlider.value = transformState.uniformScale;
       hudScale.textContent = `${transformState.uniformScale.toFixed(2)}x`;
+      updatePlanePresetUI();
     }
 
     function applyTransformsToMesh() {
@@ -1069,6 +1086,20 @@
       );
     }
 
+    function getPresetQuaternion(preset) {
+      const q = new THREE.Quaternion();
+
+      if (preset === 'XY') {
+        q.setFromEuler(new THREE.Euler(0, 0, 0, 'XYZ'));
+      } else if (preset === 'YZ') {
+        q.setFromEuler(new THREE.Euler(0, 0, Math.PI / 2, 'XYZ'));
+      } else {
+        q.setFromEuler(new THREE.Euler(-Math.PI / 2, 0, 0, 'XYZ'));
+      }
+
+      return q;
+    }
+
     function applyPlaneTransforms() {
       planeGroup.position.set(
         planeState.planeX,
@@ -1081,6 +1112,8 @@
         degToRad(planeState.planeRotY),
         degToRad(planeState.planeRotZ)
       );
+
+      planePivot.quaternion.copy(getPresetQuaternion(planeState.planePreset));
     }
 
     function fitCameraToObject(object) {
@@ -1140,21 +1173,21 @@
       planeState.planeRotX = 0;
       planeState.planeRotY = 0;
       planeState.planeRotZ = 0;
+      planeState.planePreset = 'XZ';
 
       updateAllControlLabels();
       applyPlaneTransforms();
 
-      if (!silent) setStatus('Transformaciones del plano reiniciadas.');
+      if (!silent) setStatus('Plano reiniciado a XZ estándar.');
     }
 
     function levelPlane() {
       planeState.planeRotX = 0;
       planeState.planeRotY = 0;
       planeState.planeRotZ = 0;
-
       updateAllControlLabels();
       applyPlaneTransforms();
-      setStatus('Plano nivelado.');
+      setStatus(`Plano nivelado en ${presetLabel(planeState.planePreset)}.`);
     }
 
     function snapPlaneToModel() {
@@ -1192,6 +1225,16 @@
       transformState.uniformScale = clamp(value, 0.1, 8, 1);
       updateAllControlLabels();
       applyTransformsToMesh();
+    }
+
+    function applyPlanePreset(preset) {
+      planeState.planePreset = preset;
+      planeState.planeRotX = 0;
+      planeState.planeRotY = 0;
+      planeState.planeRotZ = 0;
+      updateAllControlLabels();
+      applyPlaneTransforms();
+      setStatus(`Orientación base aplicada: ${presetLabel(preset)}.`);
     }
 
     function prepareGeometry(geometry) {
@@ -1420,7 +1463,6 @@
       }
 
       axesGroup.quaternion.copy(camera.quaternion);
-
       labelX.quaternion.copy(axesCamera.quaternion);
       labelY.quaternion.copy(axesCamera.quaternion);
       labelZ.quaternion.copy(axesCamera.quaternion);
@@ -1475,24 +1517,22 @@
       applyMaterialStyle();
     });
 
-    resetTransformsBtn.addEventListener('click', () => {
-      resetTransforms();
+    resetTransformsBtn.addEventListener('click', () => resetTransforms());
+    resetPlaneBtn.addEventListener('click', () => resetPlane());
+    snapPlaneBtn.addEventListener('click', () => snapPlaneToModel());
+    levelPlaneBtn.addEventListener('click', () => levelPlane());
+    downloadStlBtn.addEventListener('click', () => downloadAdjustedStl());
+
+    applyPlaneAxisBtn.addEventListener('click', () => {
+      applyPlanePreset(planeAxisPreset.value);
     });
 
-    resetPlaneBtn.addEventListener('click', () => {
-      resetPlane();
+    resetPlaneAxisBtn.addEventListener('click', () => {
+      applyPlanePreset('XZ');
     });
 
-    snapPlaneBtn.addEventListener('click', () => {
-      snapPlaneToModel();
-    });
-
-    levelPlaneBtn.addEventListener('click', () => {
-      levelPlane();
-    });
-
-    downloadStlBtn.addEventListener('click', () => {
-      downloadAdjustedStl();
+    planeAxisPreset.addEventListener('change', () => {
+      planePresetLabel.textContent = presetLabel(planeAxisPreset.value);
     });
 
     resetViewBtn.addEventListener('click', () => {
