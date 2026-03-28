@@ -7,16 +7,15 @@
 
   <style>
     :root {
-      --bg: #090909;
-      --bg-2: #121212;
-      --panel: rgba(20,20,20,0.86);
-      --panel-2: rgba(255,255,255,0.03);
-      --line: rgba(255,255,255,0.10);
-      --line-strong: rgba(255,255,255,0.20);
-      --text: #f5f5f5;
-      --muted: #bdbdbd;
-      --accent: #ffffff;
-      --shadow: 0 16px 40px rgba(0,0,0,0.35);
+      --bg: #050505;
+      --bg-2: #101010;
+      --panel: rgba(16,16,16,0.88);
+      --panel-2: rgba(255,255,255,0.04);
+      --line: rgba(255,255,255,0.12);
+      --line-strong: rgba(255,255,255,0.24);
+      --text: #f8f8f8;
+      --muted: #cccccc;
+      --shadow: 0 18px 46px rgba(0,0,0,0.38);
       --radius-xl: 22px;
       --radius-lg: 16px;
       --radius-md: 12px;
@@ -29,9 +28,9 @@
       width: 100%;
       height: 100%;
       background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.05), transparent 22%),
-        radial-gradient(circle at top right, rgba(255,255,255,0.035), transparent 20%),
-        linear-gradient(180deg, #111 0%, #050505 100%);
+        radial-gradient(circle at top left, rgba(255,255,255,0.06), transparent 22%),
+        radial-gradient(circle at top right, rgba(255,255,255,0.04), transparent 20%),
+        linear-gradient(180deg, #111 0%, #030303 100%);
       color: var(--text);
       font-family: Inter, Arial, Helvetica, sans-serif;
       overflow: hidden;
@@ -58,11 +57,11 @@
       position: absolute;
       left: 18px;
       bottom: 86px;
-      width: 150px;
-      height: 150px;
+      width: 155px;
+      height: 155px;
       border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: linear-gradient(180deg, rgba(18,18,18,0.78), rgba(10,10,10,0.88));
+      border: 1px solid rgba(255,255,255,0.12);
+      background: linear-gradient(180deg, rgba(18,18,18,0.80), rgba(10,10,10,0.92));
       backdrop-filter: blur(10px);
       box-shadow: 0 10px 26px rgba(0,0,0,0.28);
       pointer-events: none;
@@ -82,7 +81,7 @@
 
     .glass {
       pointer-events: auto;
-      background: linear-gradient(180deg, rgba(18,18,18,0.84), rgba(10,10,10,0.92));
+      background: linear-gradient(180deg, rgba(18,18,18,0.84), rgba(10,10,10,0.93));
       border: 1px solid var(--line);
       backdrop-filter: blur(14px);
       box-shadow: var(--shadow);
@@ -99,7 +98,7 @@
     .title-card {
       top: 18px;
       left: 18px;
-      width: min(360px, calc(100vw - 36px));
+      width: min(365px, calc(100vw - 36px));
       padding: 18px 20px;
       z-index: 5;
     }
@@ -107,7 +106,7 @@
     .control-panel {
       top: 18px;
       right: 18px;
-      width: min(430px, calc(100vw - 36px));
+      width: min(460px, calc(100vw - 36px));
       height: calc(100vh - 96px);
       overflow: auto;
       padding: 16px;
@@ -118,7 +117,7 @@
       left: 18px;
       right: 18px;
       bottom: 18px;
-      min-height: 50px;
+      min-height: 52px;
       padding: 12px 16px;
       display: grid;
       grid-template-columns: 1fr auto auto auto;
@@ -131,7 +130,7 @@
       font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.26em;
-      color: #d8d8d8;
+      color: #dadada;
       margin-bottom: 8px;
     }
 
@@ -167,7 +166,7 @@
       font-size: 0.80rem;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      color: #efefef;
+      color: #f0f0f0;
     }
 
     .row {
@@ -201,7 +200,7 @@
     input[type="file"],
     input[type="number"] {
       width: 100%;
-      background: rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.05);
       border: 1px solid var(--line);
       color: var(--text);
       border-radius: var(--radius-md);
@@ -217,29 +216,29 @@
     input[type="range"] {
       width: 100%;
       appearance: none;
-      height: 8px;
+      height: 9px;
       border-radius: 999px;
-      background: linear-gradient(90deg, #1e1e1e, #ffffff, #1e1e1e);
+      background: linear-gradient(90deg, #1f1f1f, #ffffff, #1f1f1f);
       outline: none;
       border: none;
     }
 
     input[type="range"]::-webkit-slider-thumb {
       appearance: none;
-      width: 17px;
-      height: 17px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       background: #fff;
       border: 2px solid #111;
       cursor: pointer;
-      box-shadow: 0 0 16px rgba(255,255,255,0.28);
+      box-shadow: 0 0 18px rgba(255,255,255,0.32);
     }
 
     button {
       border: 1px solid var(--line);
       border-radius: var(--radius-md);
       padding: 11px 10px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
       color: var(--text);
       font-weight: 600;
       cursor: pointer;
@@ -249,11 +248,11 @@
     button:hover {
       transform: translateY(-1px);
       border-color: var(--line-strong);
-      box-shadow: 0 0 16px rgba(255,255,255,0.08);
+      box-shadow: 0 0 16px rgba(255,255,255,0.10);
     }
 
     button.active {
-      background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06));
+      background: linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.06));
       border-color: rgba(255,255,255,0.28);
     }
 
@@ -272,10 +271,10 @@
     }
 
     .axis-row {
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.07);
       border-radius: 14px;
       padding: 10px;
-      background: rgba(255,255,255,0.02);
+      background: rgba(255,255,255,0.025);
       display: grid;
       gap: 8px;
     }
@@ -292,7 +291,7 @@
       font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: #dcdcdc;
+      color: #e0e0e0;
     }
 
     .divider {
@@ -302,7 +301,7 @@
     }
 
     .status-text {
-      color: #ededed;
+      color: #f0f0f0;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -321,7 +320,7 @@
       height: 120px;
       transform: translate(-50%, -50%);
       pointer-events: none;
-      opacity: 0.25;
+      opacity: 0.24;
     }
 
     .crosshair::before,
@@ -407,8 +406,8 @@
         <div class="eyebrow">3D STL Editor</div>
         <h1 class="title">Aircraft Viewer Pro</h1>
         <p class="subtitle">
-          Ajusta el modelo en 9 ejes: posición, rotación y escala en X, Y y Z.
-          También puedes visualizar los ejes XYZ y exportar el STL transformado.
+          Ahora el modelo y el plano se controlan por separado. Puedes mover el avión,
+          reposicionar el plano/grid y exportar el STL transformado.
         </p>
       </section>
 
@@ -441,17 +440,17 @@
 
             <div class="row">
               <label for="uniformScaleSlider">Escala general <span class="value" id="uniformScaleValue">1.00x</span></label>
-              <input id="uniformScaleSlider" type="range" min="0.2" max="4" step="0.01" value="1" />
+              <input id="uniformScaleSlider" type="range" min="0.1" max="8" step="0.01" value="1" />
             </div>
 
             <div class="row">
-              <label for="colorSlider">Color <span class="value" id="colorValue">Neutro</span></label>
+              <label for="colorSlider">Color <span class="value" id="colorValue">Blanco</span></label>
               <input id="colorSlider" type="range" min="0" max="360" step="1" value="0" />
             </div>
 
             <div class="row">
-              <label for="lightSlider">Brillo <span class="value" id="lightValue">1.20</span></label>
-              <input id="lightSlider" type="range" min="0.4" max="3" step="0.01" value="1.2" />
+              <label for="lightSlider">Brillo <span class="value" id="lightValue">1.50</span></label>
+              <input id="lightSlider" type="range" min="0.4" max="5" step="0.01" value="1.5" />
             </div>
 
             <div class="row">
@@ -467,14 +466,14 @@
           </div>
 
           <div class="control-group">
-            <h2 class="group-title">Transformaciones</h2>
+            <h2 class="group-title">Transformaciones del modelo</h2>
 
             <div class="subsection-title">Posición</div>
             <div class="axis-grid">
               <div class="axis-row">
                 <div class="mini-label">X <span class="value" id="posXLabel">0.00</span></div>
                 <div class="axis-inputs">
-                  <input id="posXSlider" type="range" min="-500" max="500" step="0.1" value="0" />
+                  <input id="posXSlider" type="range" min="-1000" max="1000" step="0.1" value="0" />
                   <input id="posXInput" type="number" step="0.1" value="0" />
                 </div>
               </div>
@@ -482,7 +481,7 @@
               <div class="axis-row">
                 <div class="mini-label">Y <span class="value" id="posYLabel">0.00</span></div>
                 <div class="axis-inputs">
-                  <input id="posYSlider" type="range" min="-500" max="500" step="0.1" value="0" />
+                  <input id="posYSlider" type="range" min="-1000" max="1000" step="0.1" value="0" />
                   <input id="posYInput" type="number" step="0.1" value="0" />
                 </div>
               </div>
@@ -490,7 +489,7 @@
               <div class="axis-row">
                 <div class="mini-label">Z <span class="value" id="posZLabel">0.00</span></div>
                 <div class="axis-inputs">
-                  <input id="posZSlider" type="range" min="-500" max="500" step="0.1" value="0" />
+                  <input id="posZSlider" type="range" min="-1000" max="1000" step="0.1" value="0" />
                   <input id="posZInput" type="number" step="0.1" value="0" />
                 </div>
               </div>
@@ -532,7 +531,7 @@
               <div class="axis-row">
                 <div class="mini-label">Scale X <span class="value" id="scaleXLabel">1.00</span></div>
                 <div class="axis-inputs">
-                  <input id="scaleXSlider" type="range" min="0.1" max="5" step="0.01" value="1" />
+                  <input id="scaleXSlider" type="range" min="0.05" max="8" step="0.01" value="1" />
                   <input id="scaleXInput" type="number" step="0.01" value="1" />
                 </div>
               </div>
@@ -540,7 +539,7 @@
               <div class="axis-row">
                 <div class="mini-label">Scale Y <span class="value" id="scaleYLabel">1.00</span></div>
                 <div class="axis-inputs">
-                  <input id="scaleYSlider" type="range" min="0.1" max="5" step="0.01" value="1" />
+                  <input id="scaleYSlider" type="range" min="0.05" max="8" step="0.01" value="1" />
                   <input id="scaleYInput" type="number" step="0.01" value="1" />
                 </div>
               </div>
@@ -548,17 +547,54 @@
               <div class="axis-row">
                 <div class="mini-label">Scale Z <span class="value" id="scaleZLabel">1.00</span></div>
                 <div class="axis-inputs">
-                  <input id="scaleZSlider" type="range" min="0.1" max="5" step="0.01" value="1" />
+                  <input id="scaleZSlider" type="range" min="0.05" max="8" step="0.01" value="1" />
                   <input id="scaleZInput" type="number" step="0.01" value="1" />
                 </div>
               </div>
             </div>
 
             <div class="button-row-2" style="margin-top:12px;">
-              <button id="resetTransformsBtn" type="button">Reset transformaciones</button>
+              <button id="resetTransformsBtn" type="button">Reset modelo</button>
               <button id="downloadStlBtn" type="button">Descargar STL</button>
             </div>
           </div>
+
+          <div class="control-group">
+            <h2 class="group-title">Transformaciones del plano</h2>
+
+            <div class="subsection-title">Posición del plano/grid</div>
+            <div class="axis-grid">
+              <div class="axis-row">
+                <div class="mini-label">Plano X <span class="value" id="planeXLabel">0.00</span></div>
+                <div class="axis-inputs">
+                  <input id="planeXSlider" type="range" min="-1000" max="1000" step="0.1" value="0" />
+                  <input id="planeXInput" type="number" step="0.1" value="0" />
+                </div>
+              </div>
+
+              <div class="axis-row">
+                <div class="mini-label">Plano Y <span class="value" id="planeYLabel">0.00</span></div>
+                <div class="axis-inputs">
+                  <input id="planeYSlider" type="range" min="-1000" max="1000" step="0.1" value="0" />
+                  <input id="planeYInput" type="number" step="0.1" value="0" />
+                </div>
+              </div>
+
+              <div class="axis-row">
+                <div class="mini-label">Plano Z <span class="value" id="planeZLabel">0.00</span></div>
+                <div class="axis-inputs">
+                  <input id="planeZSlider" type="range" min="-1000" max="1000" step="0.1" value="0" />
+                  <input id="planeZInput" type="number" step="0.1" value="0" />
+                </div>
+              </div>
+            </div>
+
+            <div class="button-row-2" style="margin-top:12px;">
+              <button id="resetPlaneBtn" type="button">Reset plano</button>
+              <button id="snapPlaneBtn" type="button">Plano al modelo</button>
+            </div>
+          </div>
+
         </div>
       </aside>
 
@@ -613,22 +649,31 @@
     const resetTransformsBtn = $('resetTransformsBtn');
     const downloadStlBtn = $('downloadStlBtn');
 
+    const resetPlaneBtn = $('resetPlaneBtn');
+    const snapPlaneBtn = $('snapPlaneBtn');
+
     const matDefaultBtn = $('matDefaultBtn');
     const matMatteBtn = $('matMatteBtn');
     const matChromeBtn = $('matChromeBtn');
 
     const controlsMap = {
-      posX: { slider: $('posXSlider'), input: $('posXInput'), label: $('posXLabel'), min: -500, max: 500, def: 0, decimals: 2 },
-      posY: { slider: $('posYSlider'), input: $('posYInput'), label: $('posYLabel'), min: -500, max: 500, def: 0, decimals: 2 },
-      posZ: { slider: $('posZSlider'), input: $('posZInput'), label: $('posZLabel'), min: -500, max: 500, def: 0, decimals: 2 },
+      posX: { slider: $('posXSlider'), input: $('posXInput'), label: $('posXLabel'), min: -1000, max: 1000, def: 0, decimals: 2 },
+      posY: { slider: $('posYSlider'), input: $('posYInput'), label: $('posYLabel'), min: -1000, max: 1000, def: 0, decimals: 2 },
+      posZ: { slider: $('posZSlider'), input: $('posZInput'), label: $('posZLabel'), min: -1000, max: 1000, def: 0, decimals: 2 },
 
       rotX: { slider: $('rotXSlider'), input: $('rotXInput'), label: $('rotXLabel'), min: -180, max: 180, def: 0, decimals: 2, suffix: '°' },
       rotY: { slider: $('rotYSlider'), input: $('rotYInput'), label: $('rotYLabel'), min: -180, max: 180, def: 0, decimals: 2, suffix: '°' },
       rotZ: { slider: $('rotZSlider'), input: $('rotZInput'), label: $('rotZLabel'), min: -180, max: 180, def: 0, decimals: 2, suffix: '°' },
 
-      scaleX: { slider: $('scaleXSlider'), input: $('scaleXInput'), label: $('scaleXLabel'), min: 0.1, max: 5, def: 1, decimals: 2 },
-      scaleY: { slider: $('scaleYSlider'), input: $('scaleYInput'), label: $('scaleYLabel'), min: 0.1, max: 5, def: 1, decimals: 2 },
-      scaleZ: { slider: $('scaleZSlider'), input: $('scaleZInput'), label: $('scaleZLabel'), min: 0.1, max: 5, def: 1, decimals: 2 }
+      scaleX: { slider: $('scaleXSlider'), input: $('scaleXInput'), label: $('scaleXLabel'), min: 0.05, max: 8, def: 1, decimals: 2 },
+      scaleY: { slider: $('scaleYSlider'), input: $('scaleYInput'), label: $('scaleYLabel'), min: 0.05, max: 8, def: 1, decimals: 2 },
+      scaleZ: { slider: $('scaleZSlider'), input: $('scaleZInput'), label: $('scaleZLabel'), min: 0.05, max: 8, def: 1, decimals: 2 }
+    };
+
+    const planeControlsMap = {
+      planeX: { slider: $('planeXSlider'), input: $('planeXInput'), label: $('planeXLabel'), min: -1000, max: 1000, def: 0, decimals: 2 },
+      planeY: { slider: $('planeYSlider'), input: $('planeYInput'), label: $('planeYLabel'), min: -1000, max: 1000, def: 0, decimals: 2 },
+      planeZ: { slider: $('planeZSlider'), input: $('planeZInput'), label: $('planeZLabel'), min: -1000, max: 1000, def: 0, decimals: 2 }
     };
 
     const transformState = {
@@ -636,6 +681,12 @@
       rotX: 0, rotY: 0, rotZ: 0,
       scaleX: 1, scaleY: 1, scaleZ: 1,
       uniformScale: 1
+    };
+
+    const planeState = {
+      planeX: 0,
+      planeY: 0,
+      planeZ: 0
     };
 
     let autoSpin = true;
@@ -650,8 +701,8 @@
     const canvas = $('scene');
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x060606);
-    scene.fog = new THREE.Fog(0x060606, 40, 260);
+    scene.background = new THREE.Color(0x050505);
+    scene.fog = new THREE.Fog(0x050505, 60, 800);
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -662,7 +713,7 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-    const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.01, 5000);
+    const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.01, 20000);
     camera.position.set(0, 25, 130);
 
     const orbit = new OrbitControls(camera, renderer.domElement);
@@ -670,26 +721,38 @@
     orbit.dampingFactor = 0.05;
     orbit.screenSpacePanning = true;
     orbit.minDistance = 0.1;
-    orbit.maxDistance = 4000;
+    orbit.maxDistance = 15000;
     orbit.target.set(0, 0, 0);
 
     const ambientLight = new THREE.AmbientLight(0xffffff, parseFloat(lightSlider.value));
-    const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
-    const fillLight = new THREE.DirectionalLight(0xdadada, 0.75);
-    const rimLight = new THREE.DirectionalLight(0xffffff, 0.95);
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
+    const fillLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    const rimLight = new THREE.DirectionalLight(0xffffff, 1.4);
 
-    keyLight.position.set(140, 180, 140);
-    fillLight.position.set(-120, 60, -120);
-    rimLight.position.set(0, 220, -180);
+    keyLight.position.set(180, 240, 180);
+    fillLight.position.set(-160, 120, -140);
+    rimLight.position.set(0, 300, -220);
 
     scene.add(ambientLight, keyLight, fillLight, rimLight);
 
-    const grid = new THREE.GridHelper(1200, 120, 0xffffff, 0x666666);
-    grid.material.opacity = 0.12;
+    const grid = new THREE.GridHelper(3000, 150, 0xffffff, 0x7f7f7f);
+    grid.material.opacity = 0.25;
     grid.material.transparent = true;
     scene.add(grid);
 
-    const axesHelper = new THREE.AxesHelper(80);
+    const floorPlane = new THREE.Mesh(
+      new THREE.PlaneGeometry(4000, 4000),
+      new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        transparent: true,
+        opacity: 0.02,
+        side: THREE.DoubleSide
+      })
+    );
+    floorPlane.rotation.x = -Math.PI / 2;
+    scene.add(floorPlane);
+
+    const axesHelper = new THREE.AxesHelper(120);
     scene.add(axesHelper);
 
     const loader = new STLLoader();
@@ -705,13 +768,13 @@
       alpha: true
     });
     axesRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    axesRenderer.setSize(150, 150);
+    axesRenderer.setSize(155, 155);
     axesViewport.appendChild(axesRenderer.domElement);
 
     const axesGroup = new THREE.Group();
     axesScene.add(axesGroup);
 
-    const axesLight = new THREE.AmbientLight(0xffffff, 1.3);
+    const axesLight = new THREE.AmbientLight(0xffffff, 1.5);
     axesScene.add(axesLight);
 
     function setStatus(message) {
@@ -729,6 +792,7 @@
     }
 
     function hueToLabel(hue) {
+      if (hue === 0) return 'Blanco';
       if (hue < 15 || hue >= 345) return 'Rojo';
       if (hue < 45) return 'Naranja';
       if (hue < 70) return 'Amarillo';
@@ -742,10 +806,11 @@
     function getToneColor() {
       const hue = parseFloat(colorSlider.value);
       const isNeutral = hue === 0;
-      const label = isNeutral ? 'Neutro' : hueToLabel(hue);
+      const label = hueToLabel(hue);
+
       const color = isNeutral
-        ? new THREE.Color(0xd9d9d9)
-        : new THREE.Color().setHSL(hue / 360, 0.18, 0.78);
+        ? new THREE.Color(0xffffff)
+        : new THREE.Color().setHSL(hue / 360, 0.68, 0.56);
 
       colorValue.textContent = label;
       return { color, label };
@@ -753,12 +818,13 @@
 
     function buildMaterial() {
       return new THREE.MeshPhysicalMaterial({
-        color: 0xd9d9d9,
+        color: 0xffffff,
         metalness: parseFloat(metalSlider.value),
-        roughness: 0.32,
-        clearcoat: 0.35,
-        clearcoatRoughness: 0.30,
-        emissive: new THREE.Color(0x111111),
+        roughness: 0.26,
+        clearcoat: 0.55,
+        clearcoatRoughness: 0.18,
+        emissive: new THREE.Color(0x141414),
+        emissiveIntensity: 0.45,
         side: THREE.DoubleSide
       });
     }
@@ -774,23 +840,26 @@
       material.wireframe = wireframe;
 
       if (materialMode === 'Mate') {
-        material.metalness = 0.05;
-        material.roughness = 0.82;
-        material.clearcoat = 0.08;
-        material.clearcoatRoughness = 0.80;
-        material.emissive.copy(color).multiplyScalar(0.03);
+        material.metalness = 0.03;
+        material.roughness = 0.72;
+        material.clearcoat = 0.05;
+        material.clearcoatRoughness = 0.85;
+        material.emissive.copy(color).multiplyScalar(0.10);
+        material.emissiveIntensity = 0.6;
       } else if (materialMode === 'Chrome') {
-        material.metalness = 0.95;
-        material.roughness = 0.16;
-        material.clearcoat = 0.9;
-        material.clearcoatRoughness = 0.08;
-        material.emissive.copy(color).multiplyScalar(0.02);
+        material.metalness = 1.0;
+        material.roughness = 0.08;
+        material.clearcoat = 1.0;
+        material.clearcoatRoughness = 0.04;
+        material.emissive.copy(color).multiplyScalar(0.05);
+        material.emissiveIntensity = 0.35;
       } else {
         material.metalness = metalnessValue;
-        material.roughness = 0.32;
-        material.clearcoat = 0.35;
-        material.clearcoatRoughness = 0.30;
-        material.emissive.copy(color).multiplyScalar(0.12);
+        material.roughness = 0.24;
+        material.clearcoat = 0.55;
+        material.clearcoatRoughness = 0.18;
+        material.emissive.copy(color).multiplyScalar(0.20);
+        material.emissiveIntensity = 0.85;
       }
 
       material.needsUpdate = true;
@@ -807,6 +876,13 @@
         const value = transformState[key];
         const suffix = cfg.suffix || '';
         cfg.label.textContent = `${Number(value).toFixed(cfg.decimals)}${suffix}`;
+        cfg.slider.value = value;
+        cfg.input.value = Number(value).toFixed(cfg.decimals);
+      });
+
+      Object.entries(planeControlsMap).forEach(([key, cfg]) => {
+        const value = planeState[key];
+        cfg.label.textContent = Number(value).toFixed(cfg.decimals);
         cfg.slider.value = value;
         cfg.input.value = Number(value).toFixed(cfg.decimals);
       });
@@ -834,10 +910,20 @@
         transformState.posY,
         transformState.posZ
       );
+    }
 
-      const box = new THREE.Box3().setFromObject(currentMesh);
-      grid.position.y = box.min.y;
-      axesHelper.position.set(0, box.min.y, 0);
+    function applyPlaneTransforms() {
+      grid.position.set(
+        planeState.planeX,
+        planeState.planeY,
+        planeState.planeZ
+      );
+
+      floorPlane.position.set(
+        planeState.planeX,
+        planeState.planeY - 0.2,
+        planeState.planeZ
+      );
     }
 
     function fitCameraToObject(object) {
@@ -848,15 +934,15 @@
       const maxDim = Math.max(size.x, size.y, size.z) || 1;
       const fov = THREE.MathUtils.degToRad(camera.fov);
       let distance = maxDim / (2 * Math.tan(fov / 2));
-      distance *= 1.8;
+      distance *= 2.0;
 
-      camera.near = Math.max(distance / 1000, 0.01);
-      camera.far = Math.max(distance * 50, 2000);
+      camera.near = Math.max(distance / 2000, 0.01);
+      camera.far = Math.max(distance * 100, 5000);
       camera.updateProjectionMatrix();
 
       camera.position.set(
-        center.x + distance * 0.22,
-        center.y + distance * 0.30,
+        center.x + distance * 0.24,
+        center.y + distance * 0.32,
         center.z + distance
       );
 
@@ -876,11 +962,9 @@
       transformState.posX = 0;
       transformState.posY = 0;
       transformState.posZ = 0;
-
       transformState.rotX = 0;
       transformState.rotY = 0;
       transformState.rotZ = 0;
-
       transformState.scaleX = 1;
       transformState.scaleY = 1;
       transformState.scaleZ = 1;
@@ -889,7 +973,33 @@
       updateAllControlLabels();
       applyTransformsToMesh();
 
-      if (!silent) setStatus('Transformaciones reiniciadas.');
+      if (!silent) setStatus('Transformaciones del modelo reiniciadas.');
+    }
+
+    function resetPlane(silent = false) {
+      planeState.planeX = 0;
+      planeState.planeY = 0;
+      planeState.planeZ = 0;
+
+      updateAllControlLabels();
+      applyPlaneTransforms();
+
+      if (!silent) setStatus('Transformaciones del plano reiniciadas.');
+    }
+
+    function snapPlaneToModel() {
+      if (!currentMesh) {
+        setStatus('Primero carga un STL.');
+        return;
+      }
+
+      planeState.planeX = transformState.posX;
+      planeState.planeY = transformState.posY;
+      planeState.planeZ = transformState.posZ;
+
+      updateAllControlLabels();
+      applyPlaneTransforms();
+      setStatus('Plano alineado a la posición del modelo.');
     }
 
     function setTransformValue(key, value) {
@@ -900,10 +1010,22 @@
       applyTransformsToMesh();
     }
 
+    function setPlaneValue(key, value) {
+      const cfg = planeControlsMap[key];
+      const safe = clamp(value, cfg.min, cfg.max, cfg.def);
+      planeState[key] = safe;
+      updateAllControlLabels();
+      applyPlaneTransforms();
+    }
+
     function setUniformScale(value) {
-      transformState.uniformScale = clamp(value, 0.2, 4, 1);
+      transformState.uniformScale = clamp(value, 0.1, 8, 1);
       updateAllControlLabels();
       applyTransformsToMesh();
+
+      if (currentMesh) {
+        fitCameraToObject(currentMesh);
+      }
     }
 
     function prepareGeometry(geometry) {
@@ -1074,21 +1196,21 @@
       }
     }
 
-    function createAxisLine(direction, length = 1.6) {
+    function createAxisLine(direction, colorHex, length = 1.7) {
       const points = [new THREE.Vector3(0, 0, 0), direction.clone().multiplyScalar(length)];
       const geometry = new THREE.BufferGeometry().setFromPoints(points);
-      const material = new THREE.LineBasicMaterial({ color: 0xffffff });
+      const material = new THREE.LineBasicMaterial({ color: colorHex });
       return new THREE.Line(geometry, material);
     }
 
-    function createTextSprite(text) {
+    function createTextSprite(text, color = '#ffffff') {
       const canvas = document.createElement('canvas');
       canvas.width = 128;
       canvas.height = 128;
 
       const ctx = canvas.getContext('2d');
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = color;
       ctx.font = 'bold 72px Arial';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
@@ -1103,17 +1225,17 @@
       });
 
       const sprite = new THREE.Sprite(material);
-      sprite.scale.set(0.55, 0.55, 0.55);
+      sprite.scale.set(0.58, 0.58, 0.58);
       return sprite;
     }
 
-    const axisX = createAxisLine(new THREE.Vector3(1, 0, 0));
-    const axisY = createAxisLine(new THREE.Vector3(0, 1, 0));
-    const axisZ = createAxisLine(new THREE.Vector3(0, 0, 1));
+    const axisX = createAxisLine(new THREE.Vector3(1, 0, 0), 0xff4040);
+    const axisY = createAxisLine(new THREE.Vector3(0, 1, 0), 0x40ff6a);
+    const axisZ = createAxisLine(new THREE.Vector3(0, 0, 1), 0x4aa3ff);
 
-    const labelX = createTextSprite('X');
-    const labelY = createTextSprite('Y');
-    const labelZ = createTextSprite('Z');
+    const labelX = createTextSprite('X', '#ff5050');
+    const labelY = createTextSprite('Y', '#50ff78');
+    const labelZ = createTextSprite('Z', '#5ab0ff');
 
     labelX.position.set(2.0, 0, 0);
     labelY.position.set(0, 2.0, 0);
@@ -1145,6 +1267,11 @@
       cfg.input.addEventListener('input', () => setTransformValue(key, cfg.input.value));
     });
 
+    Object.entries(planeControlsMap).forEach(([key, cfg]) => {
+      cfg.slider.addEventListener('input', () => setPlaneValue(key, cfg.slider.value));
+      cfg.input.addEventListener('input', () => setPlaneValue(key, cfg.input.value));
+    });
+
     uniformScaleSlider.addEventListener('input', () => {
       setUniformScale(uniformScaleSlider.value);
     });
@@ -1164,6 +1291,9 @@
     lightSlider.addEventListener('input', () => {
       const intensity = parseFloat(lightSlider.value);
       ambientLight.intensity = intensity;
+      keyLight.intensity = intensity * 1.25;
+      fillLight.intensity = intensity * 0.72;
+      rimLight.intensity = intensity * 0.88;
       lightValue.textContent = intensity.toFixed(2);
     });
 
@@ -1174,6 +1304,14 @@
 
     resetTransformsBtn.addEventListener('click', () => {
       resetTransforms();
+    });
+
+    resetPlaneBtn.addEventListener('click', () => {
+      resetPlane();
+    });
+
+    snapPlaneBtn.addEventListener('click', () => {
+      snapPlaneToModel();
     });
 
     downloadStlBtn.addEventListener('click', () => {
@@ -1236,8 +1374,8 @@
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
       const rect = axesViewport.getBoundingClientRect();
-      axesRenderer.setSize(rect.width || 150, rect.height || 150, false);
-      axesCamera.aspect = (rect.width || 150) / (rect.height || 150);
+      axesRenderer.setSize(rect.width || 155, rect.height || 155, false);
+      axesCamera.aspect = (rect.width || 155) / (rect.height || 155);
       axesCamera.updateProjectionMatrix();
     });
 
@@ -1259,6 +1397,7 @@
     lightValue.textContent = parseFloat(lightSlider.value).toFixed(2);
     metalValue.textContent = parseFloat(metalSlider.value).toFixed(2);
     getToneColor();
+    applyPlaneTransforms();
     animate();
     tryAutoLoadDefaultModel();
   </script>
